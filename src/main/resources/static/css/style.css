@@ -1,0 +1,25 @@
+
+body{
+
+}
+
+.header{
+    background: #fcdb00;
+    color: #010101;
+   }
+
+.menu{
+
+}
+
+.menu__item{
+    margin: 0 27px;
+}
+.menu__item a{
+    font-size: 22px;
+    color: #010101;
+}
+.qwerty{
+    font-size: 100px;
+    text-align: center;
+}
