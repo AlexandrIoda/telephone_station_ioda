@@ -1,25 +1,22 @@
 
 body{
-
+    background-color: lightgray;
 }
 
 .header{
-    background: #fcdb00;
-    color: #010101;
-   }
-
-.menu{
-
-}
-
-.menu__item{
-    margin: 0 27px;
-}
-.menu__item a{
-    font-size: 22px;
-    color: #010101;
-}
-.qwerty{
-    font-size: 100px;
+    height: 250px;
+    background: url("../img/bg.jpg") no-repeat center;
+    background-size: cover;
+    color: white;
     text-align: center;
+
+}
+.main{
+    margin-top: 3rem;
+}
+#regButton{
+    margin-top: 50px;
+}
+.tables{
+    margin-top: 3rem;
 }
