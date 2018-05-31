@@ -54,36 +54,28 @@
         <div class="container tables">
             <div class="row">
                 <div class="col-lg-12 tables">
-                    <table class="table table-bordered">
+
+                    <table class="table table-hover">
                         <thead>
-                        <tr>
-                            <th scope="col">Услуга</th>
-                            <th scope="col">Описание</th>
-                            <th scope="col">Стоимость</th>
-                        </tr>
+                            <tr>
+                                <th scope="col" style="width: 10%">#</th>
+                                <th scope="col" style="width: 20%">Услуга</th>
+                                <th scope="col" style="width: 20%">Описание</th>
+                                <th scope="col" style="width: 50%">Стоимость</th>
+                            </tr>
                         </thead>
+
                         <tbody>
-                        <tr>
-                            <td>Телефонная связь</td>
-                            <td>Обычная телефонная связь без дополнительных услуг</td>
-                            <td>Абонентская плата 3.4р в месяц. Стоимость разговоров внутри города бесплатна.
-                                Внутри области 3коп./мин
-                                Внутри страны 6коп./мин
-                                Международная связь недоступна
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                        </tr>
+                            <tr th:each="obj : ${services}">
+                                <th scope="row" th:text="${obj.id}"></th>
+                                <td th:text="${obj.service}"></td>
+                                <td th:text="${obj.description}"></td>
+                                <td th:text="${obj.cost}"></td>
+                            </tr>
                         </tbody>
+
                     </table>
+
                 </div>
             </div>
         </div>
