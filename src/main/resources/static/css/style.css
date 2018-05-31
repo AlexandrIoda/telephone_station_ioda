@@ -231,3 +231,7 @@ span.input-group-addon i {
 .login-button {
     margin-top: 5px;
 }
+
+.greeting {
+    color: #FFF;
+}
