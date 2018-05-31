@@ -1,3 +1,17 @@
+@keyframes dollar {
+    0% {
+        right: -100px;
+    }
+    100% {
+        right: 100%;
+    }
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
 
 body {
     background-color: lightgray;
@@ -236,11 +250,37 @@ span.input-group-addon i {
     color: #FFF;
 }
 
-.balance{
+.balance {
     color: #FFF;
     padding: .5rem 1rem;
 }
 
 .balance_text {
     color: #FFF;
+}
+
+#health {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transition: top 0.5s ease-in-out, left 0.5s ease-in-out;
+}
+
+#button-container {
+    overflow: hidden;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100%;
+}
+
+.dollar {
+    background: url("/img/original.gif");
+    background-size: 100px 64px;
+    width: 100px;
+    height: 64px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    animation: dollar 1s;
+    animation-fill-mode: forwards;
 }

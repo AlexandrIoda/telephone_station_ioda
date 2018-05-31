@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Telephone Station</title>
+    <link rel="stylesheet" href="webjars/bootstrap/4.0.0-1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="webjars/font-awesome/5.0.6/web-fonts-with-css/css/fontawesome-all.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark position-absolute w-100" style="z-index: 100">
+    <div class="container">
+        <a class="navbar-brand" href="/">ITelecom</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="services">Услуги</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about">О нас</a>
+                </li>
+                <div class="authenticated" th:if="${authorized}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="cabinet">Кабанет</a>
+                    </li>
+                </div>
+            </ul>
+
+
+            <div th:unless="${authorized}">
+                <form action="login" class="form-inline">
+                    <button type="submit" class="btn btn-default">Войти</button>
+                </form>
+            </div>
+
+            <div class="authenticated" th:if="${authorized}">
+                <form action="logout" class="form-inline">
+
+                    <div class="greeting">
+                        <span th:text="${account.username}"></span>,
+                        <span>hi! </span>
+                        <span>Баланс: </span>
+                        <span id="balance" th:text="${account.balance}"></span>
+
+                        <button type="submit" class="btn btn-default">Выйти</button>
+                    </div>
+
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+<div class="container position-relative h-100 p-0 m-0" id="button-container">
+    <button type="button" onclick="randomButtonPosition(this)" class="btn btn-danger" id="health">Пополниться
+    </button>
+</div>
+
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+    const container = $('#button-container');
+    const balance = $('#balance');
+    let costil = false;
+
+    function randomButtonPosition(e) {
+        const randomLeft = Math.floor(container.width() * Math.random());
+        const randomTop = Math.floor(container.height() * Math.random());
+
+        $(e).css('left', randomLeft);
+        $(e).css('top', randomTop);
+
+        if (costil) {
+            send_post();
+
+            const dollar = $('<div />', {"class": 'dollar'});
+            dollar.css('top', Math.floor(container.height() * Math.random()));
+            container.append(dollar);
+
+            setTimeout(() => {
+                dollar.detach();
+            }, 1000);
+        } else {
+            costil = true;
+        }
+    }
+
+    randomButtonPosition($('#health'));
+
+    function send_post() {
+
+        // console.log(${account.username});
+
+        console.log("sending post");
+        let token = $("meta[name='_csrf']").attr("content");
+        let header = $("meta[name='_csrf_header']").attr("content");
+
+        let data = JSON.stringify({
+            _csrf: token,
+            dollar: 1,
+            // id:
+        });
+
+        // Sending and receiving data using POST method
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "cabinet", true);
+        xhr.setRequestHeader(header, token);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                balance.html(Number(balance.html()) + 1);
+            } else {
+                console.log("bad post!");
+            }
+        };
+        xhr.send(data);
+    }
+</script>
+</body>
+</html>

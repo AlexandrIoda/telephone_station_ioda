@@ -1,6 +1,7 @@
 package by.grsu.ioda.artifact.DataTransferObject;
 
 import by.grsu.ioda.artifact.constraint.FieldMatch;
+import by.grsu.ioda.artifact.model.User;
 
 import javax.validation.constraints.NotEmpty;
 
