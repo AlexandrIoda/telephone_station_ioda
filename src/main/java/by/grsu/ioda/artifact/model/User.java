@@ -21,7 +21,7 @@ public class User {
     private String password;
 
     @Min(0)
-    private int balance;
+    private float balance;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -67,11 +67,11 @@ public class User {
         this.roles = roles;
     }
 
-    public int getBalance() {
+    public float getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(float balance) {
         this.balance = balance;
     }
 

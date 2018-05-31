@@ -235,3 +235,12 @@ span.input-group-addon i {
 .greeting {
     color: #FFF;
 }
+
+.balance{
+    color: #FFF;
+    padding: .5rem 1rem;
+}
+
+.balance_text {
+    color: #FFF;
+}
