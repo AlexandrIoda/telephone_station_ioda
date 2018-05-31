@@ -2,6 +2,8 @@ package by.grsu.ioda.artifact.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
 
 @Entity
@@ -12,8 +14,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotEmpty
     private String username;
+
+    @NotEmpty
     private String password;
+
+    @Min(0)
+    private int balance;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -59,12 +67,21 @@ public class User {
         this.roles = roles;
     }
 
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
-                ", password='" + "*********" + '\'' +
+                ", password='" + password + '\'' +
+                ", balance=" + balance +
                 ", roles=" + roles +
                 '}';
     }

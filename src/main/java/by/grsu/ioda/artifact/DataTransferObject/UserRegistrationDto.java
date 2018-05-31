@@ -2,7 +2,6 @@ package by.grsu.ioda.artifact.DataTransferObject;
 
 import by.grsu.ioda.artifact.constraint.FieldMatch;
 
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotEmpty;
 
 @FieldMatch.List({
@@ -18,11 +17,6 @@ public class UserRegistrationDto {
 
     @NotEmpty
     private String confirmPassword;
-
-    @AssertTrue
-    private Boolean terms;
-    private Object email;
-    private Object faculty;
 
     public String getPassword() {
         return password;
@@ -46,21 +40,5 @@ public class UserRegistrationDto {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Boolean getTerms() {
-        return terms;
-    }
-
-    public void setTerms(Boolean terms) {
-        this.terms = terms;
-    }
-
-    public Object getEmail() {
-        return email;
-    }
-
-    public Object getFaculty() {
-        return faculty;
     }
 }

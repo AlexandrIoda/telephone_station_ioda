@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -32,7 +33,8 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setUsername(registration.getUsername());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
-//		user.setRoles(Arrays.asList(new Role("ROLE_USER")));
+		user.setRoles(Arrays.asList(new Role("ROLE_USER")));
+		user.setBalance(0);
         return userRepository.save(user);
     }
 
